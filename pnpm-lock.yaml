@@ -1,6 +1,7 @@
 dependencies:
   '@sentry/node': 6.5.1
   '@sentry/tracing': 6.5.1
+  pluralize: 8.0.0
 devDependencies:
   eslint: 7.28.0
   eslint-config-airbnb: 18.2.1_865bf980219d6c4beaad3708398fa6e4
@@ -1162,6 +1163,12 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha1-yBmscoBZpGHKscOImivjxJoATX8=
+  /pluralize/8.0.0:
+    dev: false
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==
   /prelude-ls/1.2.1:
     dev: true
     engines:
@@ -1465,3 +1472,4 @@ specifiers:
   eslint-config-airbnb: ^18.2.1
   eslint-import-resolver-node: ^0.3.4
   eslint-plugin-import: ^2.23.4
+  pluralize: ^8.0.0

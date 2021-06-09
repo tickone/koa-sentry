@@ -1,9 +1,11 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-underscore-dangle */
 const Sentry = require('@sentry/node');
 const {
   extractTraceparentData,
   stripUrlQueryAndFragment,
 } = require('@sentry/tracing');
+const pluralize = require('pluralize');
 
 const domain = require('domain');
 
@@ -62,7 +64,22 @@ module.exports = (app, dsn) => {
     // if using koa router, a nicer way to capture transaction using the matched route
     if (ctx._matchedRoute) {
       const mountPath = ctx.mountPath || '';
-      transaction.setName(`${reqMethod} ${mountPath}${ctx._matchedRoute}`);
+      const path = `${mountPath}${ctx._matchedRoute}`;
+      const pathSplit = path.split('/');
+      transaction.setName(`${reqMethod} ${path}`);
+
+      for (const index in pathSplit) {
+        if (/^:/.test(pathSplit[index])) {
+          const param = pluralize.singular(pathSplit[index - 1]).toLocaleLowerCase();
+          const value = ctx.params[pathSplit[index].slice(1)];
+
+          if (/id$/.test(pathSplit[index].toLocaleLowerCase())) {
+            transaction.setTag([param, 'Id'].join(''), value);
+          } else {
+            transaction.setTag(param, value);
+          }
+        }
+      }
     }
     transaction.setHttpStatus(ctx.status);
     transaction.finish();
