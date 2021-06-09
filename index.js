@@ -14,6 +14,9 @@ module.exports = (app, dsn) => {
     // We recommend adjusting this value in production, or using tracesSampler
     // for finer control
     tracesSampleRate: 1.0,
+
+    // env
+    environment: process.env.NODE_ENV,
   });
 
   // not mandatory, but adding domains does help a lot with breadcrumbs

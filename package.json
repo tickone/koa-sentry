@@ -1,6 +1,6 @@
 {
   "name": "koa-sentry-tracing",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Koa + Sentry(report / tracing)",
   "main": "index.js",
   "author": "michael34435@capslock.tw",
