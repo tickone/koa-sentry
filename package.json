@@ -1,6 +1,6 @@
 {
 	"name": "koa-sentry-tracing",
-	"version": "2.0.0",
+	"version": "2.0.5",
 	"description": "Koa + Sentry(report / tracing)",
 	"main": "index.js",
 	"author": "michael34435@capslock.tw",
@@ -14,6 +14,7 @@
 	"dependencies": {
 		"@sentry/node": "^6.5.1",
 		"@sentry/tracing": "^6.5.1",
+		"jwt-decode": "^3.1.2",
 		"pluralize": "^8.0.0"
 	}
 }

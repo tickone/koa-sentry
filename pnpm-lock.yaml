@@ -1,6 +1,7 @@
 dependencies:
   '@sentry/node': 6.5.1
   '@sentry/tracing': 6.5.1
+  jwt-decode: 3.1.2
   pluralize: 8.0.0
 devDependencies:
   eslint: 7.28.0
@@ -925,6 +926,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==
+  /jwt-decode/3.1.2:
+    dev: false
+    resolution:
+      integrity: sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==
   /levn/0.4.1:
     dependencies:
       prelude-ls: 1.2.1
@@ -1472,4 +1477,5 @@ specifiers:
   eslint-config-airbnb: ^18.2.1
   eslint-import-resolver-node: ^0.3.4
   eslint-plugin-import: ^2.23.4
+  jwt-decode: ^3.1.2
   pluralize: ^8.0.0

@@ -6,8 +6,8 @@ const {
   stripUrlQueryAndFragment,
 } = require('@sentry/tracing');
 const pluralize = require('pluralize');
-
 const domain = require('domain');
+const jwt = require('jwt-decode');
 
 module.exports = (app, dsn) => {
   Sentry.init({
@@ -33,10 +33,21 @@ module.exports = (app, dsn) => {
     local.run(async () => {
       Sentry
         .getCurrentHub()
-        .configureScope((scope) => scope
-          .addEventProcessor((event) => Sentry
-            .Handlers.parseRequest(event, ctx.request, { user: false })));
+        .configureScope((scope) => {
+          try {
+            const payload = jwt(ctx.request.headers.authorization ?? '');
+
+            scope.setUser({ id: payload.sub });
+          } catch (error) {
+            // pass
+          }
+
+          scope.addEventProcessor((event) => Sentry
+            .Handlers.parseRequest(event, ctx.request, { user: false }));
+        });
+
       await next();
+
       resolve();
     });
   });
